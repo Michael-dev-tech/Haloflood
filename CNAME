@@ -1,1 +1,166 @@
-haloflood.org
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HALOFLOOD - Soluții Profesionale de Marketing</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Include fontul Cara -->
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/cara">
+  <style>
+    /* Setează fontul Cara pentru elementele cu clasa font-sans */
+    .font-sans {
+      font-family: 'Cara', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans leading-normal tracking-normal">
+  <!-- Header -->
+  <header class="bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto flex items-center justify-between p-4">
+      <h1 class="text-3xl font-extrabold text-white">HALOFLOOD</h1>
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="#about" class="text-gray-300 hover:text-blue-400">Despre Noi</a></li>
+          <li><a href="catalog.html" class="text-gray-300 hover:text-blue-400">Catalog</a></li>
+          <li><a href="#services" class="text-gray-300 hover:text-blue-400">Servicii</a></li>
+          <li><a href="#contact" class="text-gray-300 hover:text-blue-400">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('https://source.unsplash.com/1600x900/?marketing,advertising');">
+    <div class="text-center text-white">
+      <h2 class="text-6xl font-extrabold mb-6">Publicitate Indoor & Outdoor</h2>
+      <p class="text-2xl mb-6">Calitate. Creativitate. Durabilitate.</p>
+      <a href="#services" class="mt-6 inline-block bg-blue-500 text-white py-3 px-6 rounded-lg shadow-lg text-lg font-semibold hover:bg-blue-600">Descoperă Serviciile</a>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="py-20 bg-gray-800">
+    <div class="container mx-auto text-center">
+      <h3 class="text-4xl font-bold text-white mb-6">Despre HALOFLOOD</h3>
+      <p class="text-lg text-gray-400 leading-relaxed">
+        Cu peste 20 de ani de experiență, HALOFLOOD este lider în producția de marketing și publicitate.
+        Misiunea noastră este să oferim soluții inovatoare și personalizate pentru clienții noștri, asigurându-ne că brandurile lor se remarcă și inspiră încredere.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-20 bg-gray-900">
+    <div class="container mx-auto">
+      <h3 class="text-4xl font-bold text-center text-white mb-12">Serviciile Noastre</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Casete Luminoase și Neluminoase</h4>
+          <p class="text-gray-400">Soluții personalizate pentru a crește vizibilitatea brandului tău.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Printuri Outdoor de Mari Dimensiuni</h4>
+          <p class="text-gray-400">Bannere, mesh, autocollant de cea mai înaltă calitate.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Printuri Indoor</h4>
+          <p class="text-gray-400">De la canvas la hârtie foto, adaptate spațiilor interioare.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Personalizări Promoționale</h4>
+          <p class="text-gray-400">Tricouri, șepci, pixuri și alte produse personalizate pentru brandul tău.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Roll-Up & Sisteme Expoziționale</h4>
+          <p class="text-gray-400">Display-uri portabile și atractive pentru evenimente.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Servicii de Grafică</h4>
+          <p class="text-gray-400">Concepte inovatoare pentru identitatea brandului tău.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Casete Luminoase și Panouri Publicitare</h4>
+          <p class="text-gray-400">Realizăm panouri și casete luminoase pentru a asigura vizibilitate maximă afacerii tale.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Volumetrie - Litere Volumetrice</h4>
+          <p class="text-gray-400">Creăm litere volumetrice personalizate pentru un impact vizual deosebit.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Sisteme de Iluminare Decorativă</h4>
+          <p class="text-gray-400">Oferim soluții de iluminare decorative pentru evenimente și spații interioare.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Printuri Personalizate</h4>
+          <p class="text-gray-400">Realizăm printuri unice pentru a reflecta identitatea afacerii tale.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Servicii de Consultanță Publicitară</h4>
+          <p class="text-gray-400">Consultanță specializată pentru a optimiza campaniile de marketing.</p>
+        </div>
+        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <h4 class="text-2xl font-bold text-blue-400 mb-4">Decoruri Evenimente Speciale</h4>
+          <p class="text-gray-400">Design și implementare decoruri pentru evenimente corporate și private.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="py-20 bg-gray-800">
+    <div class="container mx-auto text-center">
+      <h3 class="text-4xl font-bold text-white mb-8">Clienții Noștri</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <img src="garanti-bank-bun1.jpg" alt="Garanti Bank Logo" class="w-40 h-auto mx-auto">
+        <img src="Kaufland_201x_logo.svg.png" alt="Kaufland Logo" class="w-40 h-auto mx-auto">
+        <img src="logo_magazialucostica_BW.png" alt="Magazia lu' Costica Logo" class="w-40 h-auto mx-auto">
+        <img src="15_KISS_FM_A-1.jpg" alt="Kiss FM Logo" class="w-40 h-auto mx-auto">
+        <img src="500x500canal-d.jpg" alt="Kanal D Logo" class="w-40 h-auto mx-auto">
+        <img src="Bricodepot.svg.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
+        <img src="Danone-Logo-2013.png" alt="Danone Logo" class="w-40 h-auto mx-auto">
+        <img src="forneti.jpg" alt="Fornetti Logo" class="w-40 h-auto mx-auto">
+        <img src="images.jpg" alt="lubbers logo" class="w-40 h-auto mx-auto">
+        <img src="logo_new.png" alt="toma catagiu" class="w-40 h-auto mx-auto">
+        <img src="logo_social_media_splendor.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
+        <img src="Magic_FM_(2019).png" alt="Danone Logo" class="w-40 h-auto mx-auto">
+        <img src="New_Project_1_9.jpg" alt="Fornetti Logo" class="w-40 h-auto mx-auto">
+        <img src="png-transparent-petrom-hd-logo-thumbnail-removebg-preview.png" alt="Kiss FM Logo" class="w-40 h-auto mx-auto">
+        <img src="Screenshot 2025-02-07 220111.png" alt="Kanal D Logo" class="w-40 h-auto mx-auto">
+        <img src="Screenshot 2025-02-07 221305.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
+        <img src="Screenshot 2025-02-07 222900.png" alt="Danone Logo" class="w-40 h-auto mx-auto">
+        <img src="sigla.png" alt="Fornetti Logo" class="w-40 h-auto mx-auto">
+        <img src="slider111.png" alt="Kiss FM Logo" class="w-40 h-auto mx-auto">
+        <img src="unnamed-removebg-preview.png" alt="Kanal D Logo" class="w-40 h-auto mx-auto">
+        <img src="unQkhNz.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
+        <img src="bardi.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-gray-900">
+    <div class="container mx-auto text-center">
+      <h3 class="text-4xl font-bold text-white mb-6">Contactează-ne</h3>
+      <p class="text-gray-400 mb-8">
+        Suntem aici pentru a te ajuta să-ți aduci viziunea la viață. Contactează-ne astăzi!
+      </p>
+      <div class="max-w-md mx-auto">
+        <p class="text-gray-200 mb-4">
+          <strong>Email:</strong> office@haloflood.ro, haloflood_sign@yahoo.com
+        </p>
+        <p class="text-gray-200">
+          <strong>Telefon:</strong> +40 752.327.059
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-6">
+    <div class="container mx-auto text-center text-gray-400">
+      &copy; 2025 HALOFLOOD. Toate drepturile rezervate.
+    </div>
+  </footer>
+</body>
+</html>
