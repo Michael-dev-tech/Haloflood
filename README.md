@@ -1,38 +1,33 @@
+# HALOFLOOD - Professional Marketing Solutions
 
-# HALOFLOOD - Soluții Profesionale de Marketing
+## About Us
 
-## Despre Noi
+HALOFLOOD is a company with over 20 years of experience in marketing and advertising production. Our mission is to provide innovative and personalized solutions for our clients, ensuring that their brands stand out and inspire confidence.
 
-HALOFLOOD este o companie cu peste 20 de ani de experiență în producția de marketing și publicitate. Misiunea noastră este să oferim soluții inovatoare și personalizate pentru clienții noștri, asigurându-ne că brandurile lor se remarcă și inspiră încredere.
+## Our Services
 
-## Serviciile Noastre
+### Indoor & Outdoor Advertising
 
-### Publicitate Indoor & Outdoor
+- **Lightboxes and Non-Lightboxes**: Custom solutions to increase your brand's visibility.
+- **Large Outdoor Prints**: High-quality banners, mesh, and stickers.
+- **Indoor Prints**: From canvas to photo paper, tailored to indoor spaces.
+- **Promotional Customizations**: T-shirts, caps, mugs, and other personalized products for your brand.
+- **Roll-Up & Exhibition Systems**: Portable and attractive displays for events.
+- **Graphic Design Services**: Innovative concepts for your brand identity.
+- **Lightboxes and Advertising Panels**: We create lightboxes and panels to ensure maximum visibility for your business.
+- **Volumetric Letters**: Custom volumetric letters for a striking visual impact.
+- **Decorative Lighting Systems**: Decorative lighting solutions for events and indoor spaces.
+- **Custom Prints**: Unique prints that reflect your business identity.
+- **Advertising Consultancy Services**: Specialized consultancy to optimize your marketing campaigns.
+- **Special Event Decor**: Design and implementation of decor for corporate and private events.
 
-- **Casete Luminoase și Neluminoase**: Soluții personalizate pentru a crește vizibilitatea brandului tău.
-- **Printuri Outdoor de Mari Dimensiuni**: Bannere, mesh, autocollant de cea mai înaltă calitate.
-- **Printuri Indoor**: De la canvas la hârtie foto, adaptate spațiilor interioare.
-- **Personalizări Promoționale**: Tricouri, șepci, pixuri și alte produse personalizate pentru brandul tău.
-- **Roll-Up & Sisteme Expoziționale**: Display-uri portabile și atractive pentru evenimente.
-- **Servicii de Grafică**: Concepte inovatoare pentru identitatea brandului tău.
-- **Casete Luminoase și Panouri Publicitare**: Realizăm panouri și casete luminoase pentru a asigura vizibilitate maximă afacerii tale.
-- **Volumetrie - Litere Volumetrice**: Creăm litere volumetrice personalizate pentru un impact vizual deosebit.
-- **Sisteme de Iluminare Decorativă**: Oferim soluții de iluminare decorative pentru evenimente și spații interioare.
-- **Printuri Personalizate**: Realizăm printuri unice pentru a reflecta identitatea afacerii tale.
-- **Servicii de Consultanță Publicitară**: Consultanță specializată pentru a optimiza campaniile de marketing.
-- **Decoruri Evenimente Speciale**: Design și implementare decoruri pentru evenimente corporate și private.
+## Our Clients
 
-## Clienții Noștri
-
-Suntem mândri să colaborăm cu branduri de top precum Garanti Bank, Kaufland, Magazia lu' Costica, Kiss FM, Kanal D, Brico Depot, Danone, Fornetti și multe altele.
+We are proud to collaborate with top brands such as Garanti Bank, Kaufland, Magazia lu' Costica, Kiss FM, Kanal D, Brico Depot, Danone, Fornetti, and many others.
 
 ## Contact
 
-Suntem aici pentru a te ajuta să-ți aduci viziunea la viață. Contactează-ne astăzi!
+We are here to help you bring your vision to life. Contact us today!
 
 - **Email**: office@haloflood.ro, haloflood_sign@yahoo.com
-- **Telefon**: +40 752.327.059
-
----
-
-Această structură va ajuta la prezentarea clară și profesională a companiei tale pe LinkedIn.
+- **Phone**: +40 752.327.059
