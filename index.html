@@ -1,166 +1,728 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="ro" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HALOFLOOD - Soluții Profesionale de Marketing</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Include fontul Cara -->
-  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/cara">
+  <title>HALOFLOOD — Soluții Profesionale de Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* Setează fontul Cara pentru elementele cu clasa font-sans */
-    .font-sans {
-      font-family: 'Cara', sans-serif;
+    /* ─── LIGHT MODE (default) ─── */
+    :root, [data-theme="light"] {
+      --bg:           #F7F5F0;
+      --bg-2:         #EEEAE3;
+      --bg-3:         #E8E4DC;
+      --text:         #141210;
+      --text-muted:   #7A746C;
+      --text-mid:     #5A544E;
+      --gold:         #9A7C20;
+      --gold-light:   #C8A96E;
+      --border:       #D4D0C8;
+      --border-mid:   #BEBA B2;
+      --logo-filter:  none;
+      --logo-opacity: 0.6;
+      --logo-hover:   1;
+      --nav-blur-bg:  rgba(247,245,240,0.94);
+      --toggle-bg:    #D4D0C8;
+      --toggle-knob:  #F7F5F0;
+      --hero-stroke:  rgba(154,124,32,0.06);
+    }
+
+    /* ─── DARK MODE ─── */
+    [data-theme="dark"] {
+      --bg:           #080808;
+      --bg-2:         #101010;
+      --bg-3:         #1A1A1A;
+      --text:         #F0EDE8;
+      --text-muted:   #6A6560;
+      --text-mid:     #9A9590;
+      --gold:         #C8A96E;
+      --gold-light:   #E0C898;
+      --border:       #1E1E1E;
+      --border-mid:   #2A2A2A;
+      --logo-filter:  none;
+      --logo-opacity: 0.35;
+      --logo-hover:   0.8;
+      --nav-blur-bg:  rgba(8,8,8,0.95);
+      --toggle-bg:    #2A2A2A;
+      --toggle-knob:  #C8A96E;
+      --hero-stroke:  rgba(200,169,110,0.05);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 20px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* ─── CURSOR (desktop only) ─── */
+    @media (pointer: fine) {
+      body { cursor: none; }
+      #c-dot, #c-ring {
+        position: fixed; border-radius: 50%;
+        pointer-events: none; z-index: 9999;
+        transform: translate(-50%,-50%);
+        will-change: left, top;
+      }
+      #c-dot  { width: 6px; height: 6px; background: var(--gold); }
+      #c-ring {
+        width: 38px; height: 38px;
+        border: 1.5px solid var(--gold);
+        opacity: 0.4;
+        transition: width 0.3s, height 0.3s;
+      }
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 1.4rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    nav.scrolled {
+      background: var(--nav-blur-bg);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1rem;
+      letter-spacing: 0.2em; color: var(--text);
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      position: relative; transition: color 0.3s;
+      white-space: nowrap;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: -3px; left: 0; width: 0; height: 1.5px;
+      background: var(--gold); transition: width 0.35s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* hide nav links on mobile, show hamburger */
+    .nav-links { display: flex; }
+
+    /* ─── THEME TOGGLE ─── */
+    .theme-toggle {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: none; border: none; cursor: pointer; padding: 0; flex-shrink: 0;
+    }
+    .toggle-label {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); transition: color 0.3s;
+      white-space: nowrap;
+    }
+    .toggle-track {
+      width: 46px; height: 26px;
+      background: var(--toggle-bg);
+      border-radius: 13px; position: relative;
+      transition: background 0.35s;
+      border: 1.5px solid var(--border-mid);
+      flex-shrink: 0;
+    }
+    .toggle-knob {
+      position: absolute; top: 3px; left: 3px;
+      width: 18px; height: 18px;
+      background: var(--toggle-knob);
+      border-radius: 50%;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background 0.35s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+    [data-theme="dark"] .toggle-knob { transform: translateX(20px); }
+    .t-icon { font-size: 0.9rem; line-height: 1; transition: opacity 0.3s; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100svh;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 6rem 2.5rem 4.5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(10rem, 22vw, 20rem);
+      font-weight: 300; color: transparent;
+      -webkit-text-stroke: 1px var(--hero-stroke);
+      white-space: nowrap; pointer-events: none;
+      letter-spacing: -0.03em; user-select: none;
+      animation: bgDrift 18s ease-in-out infinite alternate;
+    }
+    .hero-line {
+      position: absolute; top: 0; right: 13%;
+      width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--border), transparent);
+    }
+    @keyframes bgDrift {
+      from { transform: translate(-50%,-50%) translateX(-2%); }
+      to   { transform: translate(-50%,-50%) translateX(2%); }
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.8rem;
+      display: flex; align-items: center; gap: 0.9rem;
+      opacity: 0; animation: fadeUp 0.9s ease 0.4s forwards;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 28px; height: 1.5px; background: var(--gold); flex-shrink: 0;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(3.8rem, 10vw, 9rem);
+      font-weight: 300; line-height: 0.92;
+      letter-spacing: -0.025em; margin-bottom: 2.4rem;
+    }
+    .hero-title .line { overflow: hidden; display: block; }
+    .hero-title .word {
+      display: inline-block;
+      opacity: 0; transform: translateY(105%);
+    }
+    .hero-title .w1 { animation: slideUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.6s forwards; }
+    .hero-title .w2 { animation: slideUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.75s forwards; }
+    .hero-title .w3 { animation: slideUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.9s forwards; }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-bottom {
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: flex-end; gap: 2.5rem;
+    }
+    .hero-sub {
+      font-size: 1rem; color: var(--text-muted);
+      line-height: 1.85; max-width: 440px;
+      opacity: 0; animation: fadeUp 0.9s ease 1.1s forwards;
+    }
+    .hero-cta-wrap {
+      opacity: 0; animation: fadeUp 0.9s ease 1.2s forwards;
+      flex-shrink: 0;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      color: var(--text); text-decoration: none;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: 1.5px solid var(--border-mid);
+      position: relative; overflow: hidden;
+      transition: color 0.4s ease; white-space: nowrap;
+    }
+    .hero-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold); transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .hero-cta:hover::before { transform: translateX(0); }
+    .hero-cta:hover { color: #fff; }
+    .hero-cta span { position: relative; }
+    .hero-scroll {
+      position: absolute; right: 2.5rem; top: 50%;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+      opacity: 0; animation: fadeUp 1s ease 1.5s forwards;
+    }
+    .scroll-label {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); writing-mode: vertical-rl;
+    }
+    .scroll-track {
+      width: 1px; height: 60px; background: var(--border);
+      position: relative; overflow: hidden;
+    }
+    .scroll-thumb {
+      position: absolute; top: 0; left: 0;
+      width: 1px; height: 30px; background: var(--gold);
+      animation: scrollThumb 2.2s ease infinite;
+    }
+    @keyframes scrollThumb {
+      0%   { top: -30px; }
+      100% { top: 60px; }
+    }
+
+    /* ─── SHARED ─── */
+    .section-tag {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-tag::before {
+      content: ''; display: block;
+      width: 20px; height: 1.5px; background: var(--gold); flex-shrink: 0;
+    }
+
+    /* ─── ABOUT ─── */
+    .about {
+      padding: 7rem 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+      border-top: 1px solid var(--border);
+    }
+    .about-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 300; line-height: 1.12; letter-spacing: -0.02em;
+    }
+    .about-text {
+      font-size: 1rem; color: var(--text-muted);
+      line-height: 1.95; margin-bottom: 3rem;
+    }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.8rem 2rem; }
+    .stat-num {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 3.4rem; font-weight: 300; color: var(--gold); line-height: 1;
+    }
+    .stat-num sup { font-size: 1.6rem; }
+    .stat-lbl {
+      font-size: 0.72rem; color: var(--text-muted);
+      letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.5rem;
+    }
+
+    /* ─── SERVICES ─── */
+    .services { padding: 7rem 2.5rem; border-top: 1px solid var(--border); }
+    .services-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: flex-end; margin-bottom: 4rem;
+    }
+    .services-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 300; line-height: 1.12; letter-spacing: -0.02em;
+    }
+    .services-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.85; }
+    .service-list { border-top: 1px solid var(--border); }
+    .service-item {
+      display: grid; grid-template-columns: 64px 1fr 40px;
+      align-items: center; gap: 1.8rem;
+      padding: 1.7rem 0; border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: padding 0.35s cubic-bezier(0.22,1,0.36,1);
+      position: relative;
+    }
+    .service-item::before {
+      content: ''; position: absolute;
+      left: -2.5rem; right: -2.5rem; top: 0; bottom: 0;
+      background: var(--bg-2); opacity: 0; transition: opacity 0.35s; z-index: -1;
+    }
+    .service-item:hover::before { opacity: 1; }
+    .service-item:hover { padding-left: 1.2rem; }
+    .svc-num {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em;
+    }
+    .svc-name { font-size: 1.05rem; font-weight: 600; transition: color 0.3s; }
+    .service-item:hover .svc-name { color: var(--gold); }
+    .svc-desc {
+      font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;
+      line-height: 1.6; max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s; opacity: 0;
+    }
+    .service-item:hover .svc-desc { max-height: 80px; opacity: 1; }
+    .svc-arrow {
+      font-size: 1.2rem; color: var(--text-muted);
+      display: flex; align-items: center; justify-content: flex-end;
+      transition: color 0.3s, transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    .service-item:hover .svc-arrow { color: var(--gold); transform: rotate(-45deg); }
+
+    /* ─── CLIENTS (text only) ─── */
+    .clients { padding: 5.5rem 0; border-top: 1px solid var(--border); overflow: hidden; }
+    .clients-label {
+      text-align: center; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 3rem;
+    }
+    .ticker-wrap { position: relative; overflow: hidden; }
+    .ticker-wrap::before, .ticker-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 10%; z-index: 2; pointer-events: none;
+    }
+    .ticker-wrap::before { left: 0;  background: linear-gradient(to right, var(--bg), transparent); }
+    .ticker-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+    .ticker-track {
+      display: flex; align-items: center; gap: 0;
+      width: max-content; animation: ticker 50s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-muted); opacity: 0.5;
+      white-space: nowrap; transition: opacity 0.3s, color 0.3s;
+      padding: 0 2.8rem;
+      position: relative;
+    }
+    .ticker-name::after {
+      content: '·';
+      position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold); opacity: 0.4;
+    }
+    .ticker-name:hover { opacity: 1; color: var(--gold); }
+
+    /* ─── CONTACT ─── */
+    .contact {
+      padding: 8rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .contact-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      font-weight: 300; line-height: 1.1; letter-spacing: -0.025em;
+    }
+    .contact-title em { font-style: italic; color: var(--gold); }
+    .contact-info { display: flex; flex-direction: column; gap: 2.2rem; }
+    .contact-divider { width: 36px; height: 1.5px; background: var(--border-mid); }
+    .c-row { display: flex; flex-direction: column; gap: 0.45rem; }
+    .c-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .c-val { font-size: 1rem; font-weight: 600; color: var(--text); }
+    .c-val a { color: var(--text); text-decoration: none; transition: color 0.3s; }
+    .c-val a:hover { color: var(--gold); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2rem 2.5rem; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: 0.78rem; color: var(--text-muted); }
+    .f-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.2em; color: var(--text-muted); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(105%); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ═══════════════════════════════════════
+       MOBILE RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      html { font-size: 18px; }
+
+      /* Nav mobile */
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .toggle-label { display: none; }
+
+      /* Hero mobile */
+      .hero {
+        padding: 5.5rem 1.5rem 3.5rem;
+        justify-content: flex-end;
+      }
+      .hero-bg-text { font-size: clamp(6rem, 30vw, 12rem); }
+      .hero-line { display: none; }
+      .hero-scroll { display: none; }
+      .hero-title { font-size: clamp(3.2rem, 13vw, 5rem); margin-bottom: 2rem; }
+      .hero-bottom { grid-template-columns: 1fr; gap: 1.8rem; }
+      .hero-sub { font-size: 0.95rem; max-width: 100%; }
+      .hero-cta-wrap { align-items: flex-start; }
+      .hero-cta { font-size: 0.72rem; padding: 0.9rem 1.6rem; }
+
+      /* About mobile */
+      .about {
+        grid-template-columns: 1fr; gap: 3rem;
+        padding: 5rem 1.5rem;
+      }
+      .about-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
+      .stat-num { font-size: 2.8rem; }
+
+      /* Services mobile */
+      .services { padding: 5rem 1.5rem; }
+      .services-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+      .services-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .service-item { grid-template-columns: 48px 1fr 32px; gap: 1rem; padding: 1.5rem 0; }
+      .service-item::before { left: -1.5rem; right: -1.5rem; }
+      .service-item:hover { padding-left: 0.8rem; }
+      .svc-name { font-size: 1rem; }
+
+      /* Clients mobile */
+      .clients { padding: 4rem 0; }
+      .ticker-name { font-size: 0.78rem; padding: 0 2rem; }
+
+      /* Contact mobile */
+      .contact { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+      .contact-title { font-size: clamp(2.2rem, 9vw, 3rem); }
+      .c-val { font-size: 0.95rem; }
+
+      /* Footer mobile */
+      footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .f-brand { display: none; }
+    }
+
+    @media (max-width: 420px) {
+      html { font-size: 17px; }
+      .hero-title { font-size: clamp(2.8rem, 14vw, 4rem); }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
-<body class="bg-gray-900 text-gray-200 font-sans leading-normal tracking-normal">
-  <!-- Header -->
-  <header class="bg-gray-800 shadow sticky top-0 z-50">
-    <div class="container mx-auto flex items-center justify-between p-4">
-      <h1 class="text-3xl font-extrabold text-white">HALOFLOOD</h1>
-      <nav>
-        <ul class="flex space-x-6">
-          <li><a href="#about" class="text-gray-300 hover:text-blue-400">Despre Noi</a></li>
-          <li><a href="catalog.html" class="text-gray-300 hover:text-blue-400">Catalog</a></li>
-          <li><a href="#services" class="text-gray-300 hover:text-blue-400">Servicii</a></li>
-          <li><a href="#contact" class="text-gray-300 hover:text-blue-400">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<body>
 
-  <!-- Hero Section -->
-  <section class="bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('https://source.unsplash.com/1600x900/?marketing,advertising');">
-    <div class="text-center text-white">
-      <h2 class="text-6xl font-extrabold mb-6">Publicitate Indoor & Outdoor</h2>
-      <p class="text-2xl mb-6">Calitate. Creativitate. Durabilitate.</p>
-      <a href="#services" class="mt-6 inline-block bg-blue-500 text-white py-3 px-6 rounded-lg shadow-lg text-lg font-semibold hover:bg-blue-600">Descoperă Serviciile</a>
+  <div id="c-dot"></div>
+  <div id="c-ring"></div>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <a href="#" class="nav-logo">HALOFLOOD</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">Despre Noi</a></li>
+        <li><a href="#services">Servicii</a></li>
+        <li><a href="#clients">Clienți</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Comută tema">
+        <span class="t-icon" id="iconSun">☀️</span>
+        <div class="toggle-track"><div class="toggle-knob"></div></div>
+        <span class="t-icon" id="iconMoon">🌙</span>
+        <span class="toggle-label" id="toggleLabel">Dark</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-text">HALO</div>
+    <div class="hero-line"></div>
+    <p class="hero-eyebrow">Publicitate Indoor &amp; Outdoor — Est. 2005</p>
+    <h1 class="hero-title">
+      <span class="line"><span class="word w1">Vizibilitate</span></span>
+      <span class="line"><span class="word w2"><em>de impact,</em></span></span>
+      <span class="line"><span class="word w3">mereu.</span></span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">Cu peste 20 de ani de experiență, transformăm ideile brandurilor tale în materiale publicitare care rămân în minte.</p>
+      <div class="hero-cta-wrap">
+        <a href="#services" class="hero-cta"><span>Descoperă serviciile</span><span>→</span></a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-label">Scroll</div>
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
     </div>
   </section>
 
-  <!-- About Us -->
-  <section id="about" class="py-20 bg-gray-800">
-    <div class="container mx-auto text-center">
-      <h3 class="text-4xl font-bold text-white mb-6">Despre HALOFLOOD</h3>
-      <p class="text-lg text-gray-400 leading-relaxed">
-        Cu peste 20 de ani de experiență, HALOFLOOD este lider în producția de marketing și publicitate.
-        Misiunea noastră este să oferim soluții inovatoare și personalizate pentru clienții noștri, asigurându-ne că brandurile lor se remarcă și inspiră încredere.
-      </p>
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div>
+      <p class="section-tag reveal">Despre Noi</p>
+      <h2 class="about-title reveal d1">Lider în producția de marketing și <em style="font-style:italic;color:var(--gold)">publicitate</em></h2>
     </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="py-20 bg-gray-900">
-    <div class="container mx-auto">
-      <h3 class="text-4xl font-bold text-center text-white mb-12">Serviciile Noastre</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Casete Luminoase și Neluminoase</h4>
-          <p class="text-gray-400">Soluții personalizate pentru a crește vizibilitatea brandului tău.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Printuri Outdoor de Mari Dimensiuni</h4>
-          <p class="text-gray-400">Bannere, mesh, autocollant de cea mai înaltă calitate.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Printuri Indoor</h4>
-          <p class="text-gray-400">De la canvas la hârtie foto, adaptate spațiilor interioare.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Personalizări Promoționale</h4>
-          <p class="text-gray-400">Tricouri, șepci, pixuri și alte produse personalizate pentru brandul tău.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Roll-Up & Sisteme Expoziționale</h4>
-          <p class="text-gray-400">Display-uri portabile și atractive pentru evenimente.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Servicii de Grafică</h4>
-          <p class="text-gray-400">Concepte inovatoare pentru identitatea brandului tău.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Casete Luminoase și Panouri Publicitare</h4>
-          <p class="text-gray-400">Realizăm panouri și casete luminoase pentru a asigura vizibilitate maximă afacerii tale.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Volumetrie - Litere Volumetrice</h4>
-          <p class="text-gray-400">Creăm litere volumetrice personalizate pentru un impact vizual deosebit.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Sisteme de Iluminare Decorativă</h4>
-          <p class="text-gray-400">Oferim soluții de iluminare decorative pentru evenimente și spații interioare.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Printuri Personalizate</h4>
-          <p class="text-gray-400">Realizăm printuri unice pentru a reflecta identitatea afacerii tale.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Servicii de Consultanță Publicitară</h4>
-          <p class="text-gray-400">Consultanță specializată pentru a optimiza campaniile de marketing.</p>
-        </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h4 class="text-2xl font-bold text-blue-400 mb-4">Decoruri Evenimente Speciale</h4>
-          <p class="text-gray-400">Design și implementare decoruri pentru evenimente corporate și private.</p>
-        </div>
+    <div>
+      <p class="about-text reveal">Cu peste 20 de ani de experiență, HALOFLOOD este lider în producția de marketing și publicitate. Misiunea noastră este să oferim soluții inovatoare și personalizate pentru clienții noștri, asigurându-ne că brandurile lor se remarcă și inspiră încredere la fiecare pas.</p>
+      <div class="stats-grid">
+        <div class="reveal d1"><div class="stat-num">20<sup>+</sup></div><div class="stat-lbl">Ani de experiență</div></div>
+        <div class="reveal d2"><div class="stat-num">500<sup>+</sup></div><div class="stat-lbl">Clienți mulțumiți</div></div>
+        <div class="reveal d3"><div class="stat-num">12</div><div class="stat-lbl">Servicii complete</div></div>
+        <div class="reveal d4"><div class="stat-num">100<sup>%</sup></div><div class="stat-lbl">Dedicare totală</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio -->
-  <section id="portfolio" class="py-20 bg-gray-800">
-    <div class="container mx-auto text-center">
-      <h3 class="text-4xl font-bold text-white mb-8">Clienții Noștri</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <img src="garanti-bank-bun1.jpg" alt="Garanti Bank Logo" class="w-40 h-auto mx-auto">
-        <img src="Kaufland_201x_logo.svg.png" alt="Kaufland Logo" class="w-40 h-auto mx-auto">
-        <img src="logo_magazialucostica_BW.png" alt="Magazia lu' Costica Logo" class="w-40 h-auto mx-auto">
-        <img src="15_KISS_FM_A-1.jpg" alt="Kiss FM Logo" class="w-40 h-auto mx-auto">
-        <img src="500x500canal-d.jpg" alt="Kanal D Logo" class="w-40 h-auto mx-auto">
-        <img src="Bricodepot.svg.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
-        <img src="Danone-Logo-2013.png" alt="Danone Logo" class="w-40 h-auto mx-auto">
-        <img src="forneti.jpg" alt="Fornetti Logo" class="w-40 h-auto mx-auto">
-        <img src="images.jpg" alt="lubbers logo" class="w-40 h-auto mx-auto">
-        <img src="logo_new.png" alt="toma catagiu" class="w-40 h-auto mx-auto">
-        <img src="logo_social_media_splendor.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
-        <img src="Magic_FM_(2019).png" alt="Danone Logo" class="w-40 h-auto mx-auto">
-        <img src="New_Project_1_9.jpg" alt="Fornetti Logo" class="w-40 h-auto mx-auto">
-        <img src="png-transparent-petrom-hd-logo-thumbnail-removebg-preview.png" alt="Kiss FM Logo" class="w-40 h-auto mx-auto">
-        <img src="Screenshot 2025-02-07 220111.png" alt="Kanal D Logo" class="w-40 h-auto mx-auto">
-        <img src="Screenshot 2025-02-07 221305.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
-        <img src="Screenshot 2025-02-07 222900.png" alt="Danone Logo" class="w-40 h-auto mx-auto">
-        <img src="sigla.png" alt="Fornetti Logo" class="w-40 h-auto mx-auto">
-        <img src="slider111.png" alt="Kiss FM Logo" class="w-40 h-auto mx-auto">
-        <img src="unnamed-removebg-preview.png" alt="Kanal D Logo" class="w-40 h-auto mx-auto">
-        <img src="unQkhNz.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
-        <img src="bardi.png" alt="Brico Depot Logo" class="w-40 h-auto mx-auto">
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <div class="services-header">
+      <div>
+        <p class="section-tag reveal">Ce Oferim</p>
+        <h2 class="services-title reveal d1">Serviciile<br><em style="font-style:italic;color:var(--gold)">Noastre</em></h2>
+      </div>
+      <p class="services-desc reveal d2">De la concept la execuție, acoperim fiecare nevoie de comunicare vizuală pentru brandul tău.</p>
+    </div>
+    <div class="service-list reveal">
+      <div class="service-item"><span class="svc-num">01</span><div><div class="svc-name">Casete Luminoase &amp; Neluminoase</div><div class="svc-desc">Soluții personalizate pentru vizibilitatea brandului tău în orice condiții de iluminare.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">02</span><div><div class="svc-name">Printuri Outdoor de Mari Dimensiuni</div><div class="svc-desc">Bannere, mesh, autocollant de cea mai înaltă calitate pentru spații exterioare.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">03</span><div><div class="svc-name">Printuri Indoor</div><div class="svc-desc">De la canvas la hârtie foto, adaptate perfect spațiilor interioare.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">04</span><div><div class="svc-name">Personalizări Promoționale</div><div class="svc-desc">Tricouri, șepci, pixuri și alte produse personalizate pentru brandul tău.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">05</span><div><div class="svc-name">Roll-Up &amp; Sisteme Expoziționale</div><div class="svc-desc">Display-uri portabile și atractive pentru evenimente și târguri.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">06</span><div><div class="svc-name">Servicii de Grafică</div><div class="svc-desc">Concepte inovatoare pentru identitatea vizuală a brandului tău.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">07</span><div><div class="svc-name">Panouri Publicitare</div><div class="svc-desc">Panouri de impact pentru vizibilitate maximă a afacerii tale.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">08</span><div><div class="svc-name">Litere Volumetrice</div><div class="svc-desc">Litere volumetrice personalizate pentru un impact vizual memorabil.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">09</span><div><div class="svc-name">Sisteme de Iluminare Decorativă</div><div class="svc-desc">Soluții de iluminare pentru evenimente și spații interioare.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">10</span><div><div class="svc-name">Printuri Personalizate</div><div class="svc-desc">Printuri unice care reflectă identitatea afacerii tale.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">11</span><div><div class="svc-name">Consultanță Publicitară</div><div class="svc-desc">Consultanță specializată pentru campanii de marketing optimizate.</div></div><div class="svc-arrow">↗</div></div>
+      <div class="service-item"><span class="svc-num">12</span><div><div class="svc-name">Decoruri Evenimente Speciale</div><div class="svc-desc">Design și implementare decoruri pentru evenimente corporate și private.</div></div><div class="svc-arrow">↗</div></div>
+    </div>
+  </section>
+
+  <!-- CLIENTS — text only ticker -->
+  <section id="clients" class="clients">
+    <p class="clients-label">Partenerii &amp; Colaboratorii Noștri</p>
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <!-- SET 1 -->
+        <span class="ticker-name">Garanti Bank</span>
+        <span class="ticker-name">Kaufland</span>
+        <span class="ticker-name">Magazia lu' Costică</span>
+        <span class="ticker-name">Kiss FM</span>
+        <span class="ticker-name">Kanal D</span>
+        <span class="ticker-name">Brico Depot</span>
+        <span class="ticker-name">Danone</span>
+        <span class="ticker-name">Fornetti</span>
+        <span class="ticker-name">Lubbers</span>
+        <span class="ticker-name">Teatrul Toma Caragiu</span>
+        <span class="ticker-name">Splendor</span>
+        <span class="ticker-name">Magic FM</span>
+        <span class="ticker-name">H2O</span>
+        <span class="ticker-name">Petrom</span>
+        <span class="ticker-name">Pizza Hut</span>
+        <span class="ticker-name">EKA Trust</span>
+        <span class="ticker-name">Calsonic Kansei</span>
+        <span class="ticker-name">Conpet</span>
+        <span class="ticker-name">Primăria Ploiești</span>
+        <span class="ticker-name">Marelli</span>
+        <span class="ticker-name">Vodafone</span>
+        <span class="ticker-name">Bárdi Auto</span>
+        <span class="ticker-name">Audi</span>
+        <span class="ticker-name">Volkswagen</span>
+        <!-- SET 2 — duplicate for seamless loop -->
+        <span class="ticker-name">Garanti Bank</span>
+        <span class="ticker-name">Kaufland</span>
+        <span class="ticker-name">Magazia lu' Costică</span>
+        <span class="ticker-name">Kiss FM</span>
+        <span class="ticker-name">Kanal D</span>
+        <span class="ticker-name">Brico Depot</span>
+        <span class="ticker-name">Danone</span>
+        <span class="ticker-name">Fornetti</span>
+        <span class="ticker-name">Lubbers</span>
+        <span class="ticker-name">Teatrul Toma Caragiu</span>
+        <span class="ticker-name">Splendor</span>
+        <span class="ticker-name">Magic FM</span>
+        <span class="ticker-name">H2O</span>
+        <span class="ticker-name">Petrom</span>
+        <span class="ticker-name">Pizza Hut</span>
+        <span class="ticker-name">EKA Trust</span>
+        <span class="ticker-name">Calsonic Kansei</span>
+        <span class="ticker-name">Conpet</span>
+        <span class="ticker-name">Primăria Ploiești</span>
+        <span class="ticker-name">Marelli</span>
+        <span class="ticker-name">Vodafone</span>
+        <span class="ticker-name">Bárdi Auto</span>
+        <span class="ticker-name">Audi</span>
+        <span class="ticker-name">Volkswagen</span>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-20 bg-gray-900">
-    <div class="container mx-auto text-center">
-      <h3 class="text-4xl font-bold text-white mb-6">Contactează-ne</h3>
-      <p class="text-gray-400 mb-8">
-        Suntem aici pentru a te ajuta să-ți aduci viziunea la viață. Contactează-ne astăzi!
-      </p>
-      <div class="max-w-md mx-auto">
-        <p class="text-gray-200 mb-4">
-          <strong>Email:</strong> office@haloflood.ro, haloflood_sign@yahoo.com
-        </p>
-        <p class="text-gray-200">
-          <strong>Telefon:</strong> +40 752.327.059
-        </p>
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div>
+      <p class="section-tag reveal">Contactează-ne</p>
+      <h2 class="contact-title reveal d1">Hai să construim<br>ceva <em>remarcabil</em><br>împreună.</h2>
+    </div>
+    <div class="contact-info reveal d2">
+      <div class="c-row">
+        <span class="c-label">Email principal</span>
+        <span class="c-val"><a href="mailto:office@haloflood.ro">office@haloflood.ro</a></span>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="c-row">
+        <span class="c-label">Email alternativ</span>
+        <span class="c-val"><a href="mailto:haloflood_sign@yahoo.com">haloflood_sign@yahoo.com</a></span>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="c-row">
+        <span class="c-label">Telefon</span>
+        <span class="c-val"><a href="tel:+40752327059">+40 752 327 059</a></span>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="c-row">
+        <span class="c-label">Locație</span>
+        <span class="c-val">București, România</span>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 py-6">
-    <div class="container mx-auto text-center text-gray-400">
-      &copy; 2025 HALOFLOOD. Toate drepturile rezervate.
-    </div>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 HALOFLOOD. Toate drepturile rezervate.</p>
+    <span class="f-brand">HALOFLOOD</span>
+    <p>București — România</p>
   </footer>
+
+  <script>
+    /* ── CURSOR (desktop only) ── */
+    const dot  = document.getElementById('c-dot');
+    const ring = document.getElementById('c-ring');
+    if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
+      let mx=0,my=0,rx=0,ry=0;
+      document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+      (function loop(){
+        dot.style.left=mx+'px'; dot.style.top=my+'px';
+        rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+        ring.style.left=rx+'px'; ring.style.top=ry+'px';
+        requestAnimationFrame(loop);
+      })();
+    }
+
+    /* ── REVEAL ── */
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── NAV ── */
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    /* ── THEME TOGGLE ── */
+    const html    = document.documentElement;
+    const toggle  = document.getElementById('themeToggle');
+    const label   = document.getElementById('toggleLabel');
+    const sun     = document.getElementById('iconSun');
+    const moon    = document.getElementById('iconMoon');
+
+    function applyTheme(t) {
+      html.setAttribute('data-theme', t);
+      localStorage.setItem('hf-theme', t);
+      const dark = t === 'dark';
+      if (label) label.textContent = dark ? 'Light' : 'Dark';
+      if (sun)  sun.style.opacity  = dark ? '0.35' : '1';
+      if (moon) moon.style.opacity = dark ? '1'    : '0.35';
+    }
+
+    applyTheme(localStorage.getItem('hf-theme') || 'light');
+    toggle.addEventListener('click', () => {
+      applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+  </script>
 </body>
 </html>
